@@ -1,268 +1,260 @@
 // DECLARACION DE OBJETOS.
 
-class ClientObject {
-    constructor(name, lastName, dni){
-        this.name = name,
-        this.lastName = lastName,
+class ClienteObject {
+    constructor(nombre, apellido, dni, telefono){
+        this.nombre = nombre,
+        this.apellido = apellido,
         this.dni = dni
+        this.telefono = telefono
     }
 }
 
-class ActivtyObject{
-    constructor(id, name){
+class ActividadObject{
+    constructor(id, nombre, horarios){
         this.id = id,
-        this.name = name
+        this.nombre = nombre,
+        this.horarios = horarios
     }
 }
 
-class TurnObject{
-    constructor(id, nameClient, dniClient, activity, shiftSelected){
-        this.nameClient = nameClient,
-        this.dniClient = dniClient,
-        this.activity = activity,
-        this.shiftSelected = shiftSelected
+class TurnoObject{
+    constructor(nombreCliente, dniCliente, telefonoCliente, actividadSeleccionada, horarioSeleccionado){
+        this.nombreCliente = nombreCliente,
+        this.dniCliente = dniCliente,
+        this.telefonoCliente = telefonoCliente
+        this.actividadSeleccionada = actividadSeleccionada,
+        this.horarioSeleccionado = horarioSeleccionado
     }
 }
 
+// Inicializamos una constante 'cliente' como Objeto de ClienteObject.
+const _cliente = new ClienteObject;
+
+// Inicializamos una constante de que es un array de Actividades de tipo ActividadObject.
+const _actividades = [
+    new ActividadObject(
+        1, 
+        'funcional', 
+        [
+            '17:00',
+            '19:00',
+            '20:00',
+        ],
+    ),
+    new ActividadObject(
+        2, 
+        'yoga', 
+        [
+            '17:00',
+        ],
+    ),
+    new ActividadObject(
+        3, 
+        'tela', 
+        [
+            '17:00',
+        ],
+    ),
+    new ActividadObject(
+        4, 
+        'crossfit', 
+        [
+            '17:00',
+            '20:00',
+        ],
+    ),
+    new ActividadObject(
+        5, 
+        'aerobox', 
+        [
+            '18:00',
+            '19:00',
+        ],
+    ),
+    new ActividadObject(
+        6, 
+        'zumba', 
+        [
+            '18:00',
+            '19:00',
+            '20:00',
+            '22:00',
+        ],
+    ),
+    new ActividadObject(
+        7, 
+        'taekwondo', 
+        [
+            '18:00',
+            '19:00',
+            '20:00',
+        ],
+    ),
+    new ActividadObject(
+        8, 
+        'karate', 
+        [
+            '19:00',
+            '20:00',
+            '21:00',
+        ],
+    ),
+    new ActividadObject(
+        9, 
+        'mma', 
+        [
+            '21:00',
+            '22:00',
+        ],
+    ),
+    new ActividadObject(
+        10, 
+        'boxeo', 
+        [
+            '20:00',
+            '21:00',
+        ],
+    ),
+];
+
+// Almacenamos una constante de tipo TurnObject
+const _turnoGuardar = new TurnoObject;
+
+// Almacenamos en una variable la actividad seleccionada
+let _actividadSeleccionada = new ActividadObject;
+
+// Almacenamos en una variable el turno seleccionado por el cliente.
+let _horarioSeleccionado;
 
 
-const client = new ClientObject;
+// PASO 1: Seleccionar Actividad.
+const seleccionarActividad = (_isCorrecto = true) => {
+    const mostrarActividades = _actividades.map( a => ` \n • ${a.nombre}`);
 
-const _firstActivity = new ActivtyObject(1, 'funcional');
-const _secondActivity  = new ActivtyObject(2, 'yoga');
-const _thirdActivity = new ActivtyObject(3, 'tela');
-const _fourthActivity = new ActivtyObject(4, 'crossfitt'); 
-const _fifthActivity = new ActivtyObject(5, 'aerobox');
-const _sixthActivity = new ActivtyObject(6, 'zumba');
-const _seventhActivity = new ActivtyObject(7, 'taekwondo');
-const _eighthActivty = new ActivtyObject(8, 'karate');
-const _ninthActivity = new ActivtyObject(9, 'mma');
-const _tenthActivity = new ActivtyObject(10, 'boxeo');
+    const mjeInicial = `Tenemos las siguientes actividades disponibles:
+                                  ${mostrarActividades.sort()}
+                                Por favor, seleccione una:`
 
-const turn = new TurnObject;
+    const mjeError = `La actividad seleccionada es incorrecta, por favor vuelva a seleccionar:
+                                  ${mostrarActividades.sort()}`
 
-// Variables para realizar conteos de lugares disponibles.
-let totalPlaces
-let _availableSpace
-
-// almacenamos el turno seleccionado
-let selectedShift;
-
-// almacenamos la actividad seleccionada;
-let codeSelectedActivity;
-
-// creamos una bandera para saber si el horario seleccionado es correcto, inicializamos en falsa.
-let isCorrectSchedule = false;
-
-
-// Creamos una funcion para cargar los datos del cliente
-const loadData = () => {
-    client.name = prompt('Ingrese su nombre: ').toLowerCase();
-    while(!client.name.match(/[a-zA-Z]/)){
-        client.name = prompt('El nombre ingresado no es válido, ingrese nuevamente: ').toLowerCase();
-    }
-
-    client.lastName = prompt('Ingrese su apellido: ').toLowerCase();
-    while(!client.lastName.match(/[a-zA-Z]/)){
-        client.lastName = prompt('El apellido ingresado no es válido, ingrese nuevamente: ').toLowerCase();
-    }
-
-    client.dni = parseInt(prompt('Ingrese su Número de Documento: '));
-    while(isNaN(client.dni)){
-        client.dni = parseInt(prompt('El documento ingresado no es válido, ingrese nuevamente: '));
-    }
-
-    loadSchedule('Ingrese el horario a asistir (17:00 | 18:00 | 19:00 | 20:00 | 21:00 | 22:00): ');
-}
-
-// Creamos una funcion para cargar el horario
-const loadSchedule = (_message) => {
-    selectedShift = prompt(`${_message}`);
-
-    verifySchedule(selectedShift)
-}
-
-// Creamos una funcion para verificar el horario ingresado
-const verifySchedule = (_schedule) => {
-    while(isCorrectSchedule == false){
-        if(_schedule === '17:00' || _schedule === '18:00' || _schedule === '19:00' || _schedule === '20:00' || _schedule === '21:00' || _schedule === '22:00'){
-            isCorrectSchedule = true;
-            loadActivity(selectedShift);
-        }else{
-            isCorrectSchedule = false;
-            loadSchedule('El horario ingresado no es válido, ingrese nuevamente (17:00 | 18:00 | 19:00 | 20:00 | 21:00 | 22:00): ');
-        }
-    }
-
-}
-
-// creamos una funcion para cargar la actividad que queremos
-const loadActivity = (_shift) => {
-    switch(_shift){
-        case '17:00':
-            codeSelectedActivity = parseInt(prompt(`Las actividades disponibles para este horario son: 
-                                                ${_firstActivity.id} - ${_firstActivity.name}
-                                                ${_secondActivity.id} - ${_secondActivity.name}
-                                                ${_thirdActivity.id} - ${_thirdActivity.name}
-                                                ${_fourthActivity.id} - ${_fourthActivity.name}
-                                       Ingrese el número correspondiente a la actividad que desea: `));
-
-            verifyActivity(codeSelectedActivity);
-
-            break;
-
-        case '18:00':
-            codeSelectedActivity = parseInt(prompt(`Las actividades disponibles para este horario son:
-                                                ${_fifthActivity.id} - ${_fifthActivity.name}
-                                                ${_sixthActivity.id} - ${_sixthActivity.name}
-                                                ${_seventhActivity.id} - ${_seventhActivity.name}
-                                       Ingrese el número correspondiente a la actividad que desea: `));
-                                           
-            verifyActivity(codeSelectedActivity);
-
-            break;
-
-        case '19:00':
-            codeSelectedActivity = parseInt(prompt(`Las actividades disponibles para este horario son: 
-                                                ${_sixthActivity.id} - ${_sixthActivity.name}
-                                                ${_seventhActivity.id} - ${_seventhActivity.name}
-                                                ${_eighthActivty.id} - ${_eighthActivty.name}
-                                       Ingrese el número correspondiente a la actividad que desea: `));
-
-            verifyActivity(codeSelectedActivity);
-
-            break;
-
-        case '20:00':
-            codeSelectedActivity = parseInt(prompt(`Las actividades disponibles para este horario son: 
-                                                ${_sixthActivity.id} - ${_sixthActivity.name}
-                                                ${_eighthActivty.id} - ${_eighthActivty.name}
-                                                ${_seventhActivity.id} - ${_seventhActivity.name}}
-                                                ${_tenthActivity.id} - ${_tenthActivity.name}
-                                       Ingrese el número correspondiente a la actividad que desea: `));
-
-            verifyActivity(codeSelectedActivity);
-            
-            break;
-
-        case '21:00':
-            codeSelectedActivity = parseInt(prompt(`Las actividades disponibles para este horario son: 
-                                                ${_ninthActivity.id} - ${_ninthActivity.name}
-                                                ${_eighthActivty.id} - ${_eighthActivty.name}
-                                                ${_tenthActivity.id} - ${_tenthActivity.name}
-                                       Ingrese el número correspondiente a la actividad que desea: `));
-                                           
-            verifyActivity(codeSelectedActivity);
-            
-            break;
-
-        case '22:00':
-            codeSelectedActivity = parseInt(prompt(`Las actividades disponibles para este horario son: 
-                                                ${_sixthActivity.id} - ${_sixthActivity.name}
-                                                ${_ninthActivity.id} - ${_ninthActivity.name}
-                                       Ingrese el número correspondiente a la actividad que desea: `));
-            
-            verifyActivity(codeSelectedActivity);
-
-            break;
-    }
-
-}
-
-// Creamos una funcion para que la verificar actividad sea valida
-const verifyActivity = (_activity) => {
-    if(isNaN(_activity)) return loadActivity(selectedShift);
-
-    if(_activity === _firstActivity.id || _activity === _secondActivity.id || _activity === _thirdActivity.id || _activity === _fourthActivity.id || _activity === _fifthActivity.id || _activity === _sixthActivity.id || _activity === _seventhActivity.id || _activity === _eighthActivty.id || _activity === _ninthActivity.id || _activity === _tenthActivity.id){
-        return formatData(_activity);
-    }else{
-        return loadActivity(selectedShift);
-    }
+    let mensaje = _isCorrecto ? mjeInicial : mjeError
+    
+    let actividadElegida = prompt(mensaje);
+    
+    verificarActividad(actividadElegida);
 }
 
 
-const formatData = (activity) => {
-    // Calculamos los luagres que quedan disponibles.
-    totalPlaces = 10;
-    _availableSpace = totalPlaces - 1;
+// PASO 2: Verificar que la actividad ingresada exista.
+const verificarActividad = (actividadElegida) => {
+    let actividadEsCorrecta = false;
 
-    // formateamos los datos del cliente para que se vean en CamelCase.
-    client.name = client.name[0].toUpperCase() + client.name.slice(1);
-    client.lastName = client.lastName[0].toUpperCase() + client.lastName.slice(1);
+    while(!actividadEsCorrecta){
+        _actividades.forEach(a => {
+            if(a.nombre === actividadElegida.toLowerCase()) {
+                actividadEsCorrecta = true;
+                _actividadSeleccionada = a;
+            }
+        });
 
-    // buscamos la actividad que selecciono el cliente, formateamos a CamelCase y la guardamos en una variable.
-    let _selectedActivity = null;
-    while(!_selectedActivity){
-        switch(activity){
-            case _firstActivity.id:
-                _selectedActivity = _firstActivity.name[0].toUpperCase() + _firstActivity.name.slice(1);
-                break;
+        if(actividadEsCorrecta) return elegirHorario();
 
-            case _secondActivity.id:
-                _selectedActivity = _secondActivity.name[0].toUpperCase() + _secondActivity.name.slice(1);
-                break;
-
-            case _thirdActivity.id:
-                _selectedActivity = _thirdActivity.name[0].toUpperCase() + _thirdActivity.name.slice(1);
-                break;
-
-            case _fourthActivity.id:
-                _selectedActivity = _fourthActivity.name[0].toUpperCase() + _fourthActivity.name.slice(1);
-                break;
-
-            case _fifthActivity.id:
-                _selectedActivity = _fifthActivity.name[0].toUpperCase() + _fifthActivity.name.slice(1);
-                break;
-
-            case _sixthActivity.id:
-                _selectedActivity = _sixthActivity.name[0].toUpperCase() + _sixthActivity.name.slice(1);
-                break;
-
-            case _seventhActivity.id:
-                _selectedActivity = _seventhActivity.name[0].toUpperCase() + _seventhActivity.name.slice(1);
-                break;
-
-            case _eighthActivty.id:
-                _selectedActivity = _eighthActivty.name[0].toUpperCase() + _eighthActivty.name.slice(1);
-                break;
-
-            case _ninthActivity.id:
-                _selectedActivity = _ninthActivity.name[0].toUpperCase() + _ninthActivity.name.slice(1);
-                break;
-
-            case _tenthActivity.id:
-                _selectedActivity = _tenthActivity.name[0].toUpperCase() + _tenthActivity.name.slice(1);
-                break;
-
-            default:
-                break;
-        }
+        return seleccionarActividad(actividadEsCorrecta);
     }
-    // Completamos el objeto que muestra el turno
-    turn.nameClient = `${client.name} ${client.lastName}`,
-    turn.dniClient = client.dni,
-    turn.activity = _selectedActivity,
-    turn.shiftSelected = selectedShift
-
-    confirmShift()
-
 }
 
-const confirmShift = () => {
+// PASO 3: Visualizar los horarios de la actividad elegida, y seleccionar uno.
+const elegirHorario = (_isCorrecto = true) => {
+    const mostrarHorarios = _actividadSeleccionada.horarios.map( h => ` \n • ${h}`);
+
+    const mjeInicial = `${_actividadSeleccionada.nombre} tiene los siguientes horarios disponibles:
+                                    ${mostrarHorarios}
+                                Por favor, seleccione uno:`
+
+    const mjeError = `el horario seleccionado es incorrecto, por favor vuelva a seleccionar:
+                                    ${mostrarHorarios}`
+
+    let mensaje = _isCorrecto ? mjeInicial : mjeError
+
+    let horarioElegido = prompt(mensaje);
+
+    verificarHorario(horarioElegido);
+}
+
+// PASO 4: Verificamos que el horario ingresado sea válido.
+const  verificarHorario = (horarioElegido) => {
+    let horarioEsCorrecto = false;
+
+    while(!horarioEsCorrecto){
+        _actividadSeleccionada.horarios.forEach(h => {
+            if(h === horarioElegido) {
+                horarioEsCorrecto = true;
+                _horarioSeleccionado = h;
+            }
+        });
+
+        if(horarioEsCorrecto) return cargarDatosCliente();
+
+        return elegirHorario(horarioEsCorrecto);
+    }
+}
+
+// PASO 5: Pedimos los datos personales del cliente.
+const cargarDatosCliente = () => {
+    _cliente.nombre = prompt('Ingrese su nombre: ').toLowerCase();
+    while(!_cliente.nombre.match(/[a-zA-Z]/)){
+        _cliente.nombre = prompt('El nombre ingresado no es válido, ingrese nuevamente: ').toLowerCase();
+    }
+
+    _cliente.apellido = prompt('Ingrese su apellido: ').toLowerCase();
+    while(!_cliente.apellido.match(/[a-zA-Z]/)){
+        _cliente.apellido = prompt('El apellido ingresado no es válido, ingrese nuevamente: ').toLowerCase();
+    }
+
+    _cliente.dni = parseInt(prompt('Ingrese su Número de Documento: '));
+    while(isNaN(_cliente.dni)){
+        _cliente.dni = parseInt(prompt('El documento ingresado no es válido, ingrese nuevamente: '));
+    }
+
+    _cliente.telefono = parseInt(prompt('Ingrese su Número de Telefono: '));
+    while(isNaN(_cliente.telefono)){
+        _cliente.telefono = parseInt(prompt('El telefono ingresado no es válido, ingrese nuevamente: '));
+    }
+
+    preprararReserva();
+}
+
+// PASO 6: Validamos que tengamos todos los datos y preparamos para almacenar el el objeto de turno.
+const preprararReserva = () => {
+    _turnoGuardar.nombreCliente = `${_cliente.nombre} ${_cliente.apellido}`;
+    _turnoGuardar.dniCliente = _cliente.dni;
+    _turnoGuardar.telefonoCliente = _cliente.telefono;
+    _turnoGuardar.actividadSeleccionada = _actividadSeleccionada.nombre[0].toUpperCase() + _actividadSeleccionada.nombre.slice(1);
+    _turnoGuardar.horarioSeleccionado = _horarioSeleccionado;
+    
+    confirmarReserva();
+}
+
+const confirmarReserva = () => {
+    let lugaresTotales = 10;
+    let lugaresDisponibles = lugaresTotales - 1;
+
     alert(`
-    ***********************************************************
-    LA RESERVA SE REALIZÓ CON ÉXITO, CON LOS SIGUIENTES DATOS:
-                NOMBRE: ${turn.nameClient},
-                DNI: ${turn.dniClient},
-                ACTIVIDAD: ${turn.activity}.
-                TURNO: ${turn.shiftSelected},
-    ___________________________________________________________
-            cupos disponibles: ${_availableSpace}
-               ¡GRACIAS POR CONFIAR EN NOSOTROS!
- 
-    `)
-}   
+            ***********************************************************
+            LA RESERVA SE REALIZÓ CON ÉXITO, CON LOS SIGUIENTES DATOS:
+                        NOMBRE: ${_turnoGuardar.nombreCliente},
+                        DNI: ${_turnoGuardar.dniCliente},
+                        TELEFONO: ${_turnoGuardar.telefonoCliente},
+                        ACTIVIDAD: ${_turnoGuardar.actividadSeleccionada}.
+                        TURNO: ${_turnoGuardar.horarioSeleccionado},
+            ___________________________________________________________
+                    cupos disponibles: ${lugaresDisponibles}
+                       ¡GRACIAS POR CONFIAR EN NOSOTROS!
+            `
+    )
+}
 
 
-
-loadData();
+// Inicializamos como funcion de arranque
+seleccionarActividad();

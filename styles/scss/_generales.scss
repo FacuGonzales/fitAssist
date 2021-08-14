@@ -1,0 +1,19 @@
+@import "mixins/_mixins.scss";
+@import "variables/_colors.scss";
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: NFL;
+}
+
+p {
+  font-family: Deutschlander;
+}
+
+.section {
+  @include background-image-content("../../assets/img/fondoAbout.svg");
+  color: $colorBlanco;
+}

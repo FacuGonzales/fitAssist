@@ -1,5 +1,7 @@
 @import "variables/_colors.scss";
 @import "mixins/_mixins.scss";
+@import "_fonts.scss";
+@import "_generales.scss";
 
 .header {
   height: 100vh;
@@ -14,11 +16,76 @@
   }
 
   &__h5 {
-    color: #fff;
+    color: $colorBlanco;
     text-align: center;
     font-size: 1.5rem;
-    font-family: arial;
     font-weight: bold;
+  }
+}
+
+.sectionAbout {
+  width: 100%;
+  color: $colorBlanco;
+  text-align: center;
+
+  &__aboutContainer {
+    padding: 50px;
+
+    &--title {
+      font-size: 5rem;
+      margin-bottom: 30px;
+    }
+
+    &--parrafo {
+      font-size: 2rem;
+      letter-spacing: 2px;
+    }
+  }
+}
+
+.sectionListado {
+  width: 100%;
+  margin: 0px auto;
+  &__contenedor {
+    border-top: 1px solid #ccc;
+    width: 80%;
+    margin: 0px auto;
+    text-align: center;
+
+    &--title {
+      font-size: 5rem;
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+
+    &--ul {
+      @include display-grid-content(20% 20% 20% 20%, 250px 250px);
+      li {
+        img {
+          width: 200px;
+          height: 150px;
+        }
+      }
+    }
+  }
+}
+
+.sectionConfirmacion {
+  div {
+    text-align: center;
+
+    h3 {
+      font-size: 4rem;
+      padding-top: 70px;
+      margin-bottom: 40px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    p {
+      font-size: 2rem;
+      padding: 10px 0px;
+      letter-spacing: 3px;
+    }
   }
 }
 

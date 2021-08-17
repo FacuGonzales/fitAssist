@@ -10,8 +10,9 @@ class ClienteObject {
 }
 
 class ActividadObject{
-    constructor(id, nombre, horarios){
+    constructor(id, img, nombre, horarios){
         this.id = id,
+        this.img = img,
         this.nombre = nombre,
         this.horarios = horarios
     }
@@ -34,6 +35,7 @@ const _cliente = new ClienteObject;
 const _actividades = [
     new ActividadObject(
         1, 
+        'assets/img/funcional.svg',
         'funcional', 
         [
             '17:00',
@@ -43,6 +45,7 @@ const _actividades = [
     ),
     new ActividadObject(
         2, 
+        'assets/img/yoga.svg',
         'yoga', 
         [
             '17:00',
@@ -50,6 +53,7 @@ const _actividades = [
     ),
     new ActividadObject(
         3, 
+        'assets/img/tela.svg',
         'tela', 
         [
             '17:00',
@@ -57,6 +61,7 @@ const _actividades = [
     ),
     new ActividadObject(
         4, 
+        'assets/img/crossfit.svg',
         'crossfit', 
         [
             '17:00',
@@ -65,6 +70,7 @@ const _actividades = [
     ),
     new ActividadObject(
         5, 
+        'assets/img/aerobox.svg',
         'aerobox', 
         [
             '18:00',
@@ -73,6 +79,7 @@ const _actividades = [
     ),
     new ActividadObject(
         6, 
+        'assets/img/zumba.svg',
         'zumba', 
         [
             '18:00',
@@ -83,6 +90,7 @@ const _actividades = [
     ),
     new ActividadObject(
         7, 
+        'assets/img/taekwondo.svg',
         'taekwondo', 
         [
             '18:00',
@@ -92,6 +100,7 @@ const _actividades = [
     ),
     new ActividadObject(
         8, 
+        'assets/img/karate.svg',
         'karate', 
         [
             '19:00',
@@ -101,6 +110,7 @@ const _actividades = [
     ),
     new ActividadObject(
         9, 
+        'assets/img/mma.svg',
         'mma', 
         [
             '21:00',
@@ -109,6 +119,7 @@ const _actividades = [
     ),
     new ActividadObject(
         10, 
+        'assets/img/boxeo.svg',
         'boxeo', 
         [
             '20:00',
@@ -116,6 +127,20 @@ const _actividades = [
         ],
     ),
 ];
+
+// Creamos el elemento para graficar listado en el html
+const ulContenedor = document.getElementById('ulContenedor')
+
+for (const actividad of _actividades){
+    let listadoActividades = document.createElement("li");
+
+    listadoActividades.innerHTML = `<img src="${actividad.img}" alt="${actividad.nombre}Img"/>
+                                    <h3>${actividad.nombre}</h3>
+                                    <a>${actividad.horarios}</a>`
+
+    ulContenedor.appendChild(listadoActividades);
+}
+
 
 // Almacenamos una constante de tipo TurnObject
 const _turnoGuardar = new TurnoObject;
@@ -240,21 +265,38 @@ const confirmarReserva = () => {
     let lugaresTotales = 10;
     let lugaresDisponibles = lugaresTotales - 1;
 
-    alert(`
-            ***********************************************************
-            LA RESERVA SE REALIZÓ CON ÉXITO, CON LOS SIGUIENTES DATOS:
-                        NOMBRE: ${_turnoGuardar.nombreCliente},
-                        DNI: ${_turnoGuardar.dniCliente},
-                        TELEFONO: ${_turnoGuardar.telefonoCliente},
-                        ACTIVIDAD: ${_turnoGuardar.actividadSeleccionada}.
-                        TURNO: ${_turnoGuardar.horarioSeleccionado},
-            ___________________________________________________________
-                    cupos disponibles: ${lugaresDisponibles}
-                       ¡GRACIAS POR CONFIAR EN NOSOTROS!
-            `
-    )
-}
+    // Creamos el elemento para graficar el mensaje de Confirmacion
+    const sectionConfimracion = document.getElementById('sectionConfirmacionId')
 
+    let mensajeContenedor= document.createElement("div");
+
+    mensajeContenedor.innerHTML = `<h3>LA RESERVA SE REALIZO CON EXITO</h3>
+                                    <p>NOMBRE ${_turnoGuardar.nombreCliente},</p>
+                                    <p>DNI: ${_turnoGuardar.dniCliente},</p>
+                                    <p>TELEFONO: ${_turnoGuardar.telefonoCliente},</p>
+                                    <p>ACTIVIDAD: ${_turnoGuardar.actividadSeleccionada}.</p>
+                                    <p>TURNO: ${_turnoGuardar.horarioSeleccionado},</p>
+
+                                    <br>
+
+                                    <p>Cupos disponibles: ${lugaresDisponibles}</p>
+                                    `
+    sectionConfimracion.appendChild(mensajeContenedor);
+
+    // alert(`
+    //         ***********************************************************
+    //         LA RESERVA SE REALIZÓ CON ÉXITO, CON LOS SIGUIENTES DATOS:
+    //                     NOMBRE: ${_turnoGuardar.nombreCliente},
+    //                     DNI: ${_turnoGuardar.dniCliente},
+    //                     TELEFONO: ${_turnoGuardar.telefonoCliente},
+    //                     ACTIVIDAD: ${_turnoGuardar.actividadSeleccionada}.
+    //                     TURNO: ${_turnoGuardar.horarioSeleccionado},
+    //         ___________________________________________________________
+    //                 cupos disponibles: ${lugaresDisponibles}
+    //                    ¡GRACIAS POR CONFIAR EN NOSOTROS!
+    //         `
+    // )
+}
 
 // Inicializamos como funcion de arranque
 seleccionarActividad();

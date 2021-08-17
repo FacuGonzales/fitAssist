@@ -1,3 +1,36 @@
+@font-face {
+  font-family: "Deutschlander";
+  src: url("../../assets/fonts/Deutschlander.otf"); }
+
+@font-face {
+  font-family: "Republica-minor-bold-italic";
+  src: url("../../assets/fonts/Republica Minor Bold Italic.ttf"); }
+
+@font-face {
+  font-family: "Republica-minor-regular";
+  src: url("../../assets/fonts/Republica Minor Regular.ttf"); }
+
+@font-face {
+  font-family: "NFL";
+  src: url("../../assets/fonts/NFL_Minnesota_Vikings[1].ttf"); }
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: NFL; }
+
+p {
+  font-family: Deutschlander; }
+
+.section {
+  background-image: url("../../assets/img/fondoAbout.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  color: #fff; }
+
 .header {
   height: 100vh;
   width: 100%;
@@ -13,8 +46,52 @@
     color: #fff;
     text-align: center;
     font-size: 1.5rem;
-    font-family: arial;
     font-weight: bold; }
+
+.sectionAbout {
+  width: 100%;
+  color: #fff;
+  text-align: center; }
+  .sectionAbout__aboutContainer {
+    padding: 50px; }
+    .sectionAbout__aboutContainer--title {
+      font-size: 5rem;
+      margin-bottom: 30px; }
+    .sectionAbout__aboutContainer--parrafo {
+      font-size: 2rem;
+      letter-spacing: 2px; }
+
+.sectionListado {
+  width: 100%;
+  margin: 0px auto; }
+  .sectionListado__contenedor {
+    border-top: 1px solid #ccc;
+    width: 80%;
+    margin: 0px auto;
+    text-align: center; }
+    .sectionListado__contenedor--title {
+      font-size: 5rem;
+      margin-top: 20px;
+      margin-bottom: 30px; }
+    .sectionListado__contenedor--ul {
+      display: grid;
+      grid-template-columns: 20% 20% 20% 20%;
+      grid-template-rows: 250px 250px; }
+      .sectionListado__contenedor--ul li img {
+        width: 200px;
+        height: 150px; }
+
+.sectionConfirmacion div {
+  text-align: center; }
+  .sectionConfirmacion div h3 {
+    font-size: 4rem;
+    padding-top: 70px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #ccc; }
+  .sectionConfirmacion div p {
+    font-size: 2rem;
+    padding: 10px 0px;
+    letter-spacing: 3px; }
 
 @media only screen and (max-width: 768px) {
   .header__img {

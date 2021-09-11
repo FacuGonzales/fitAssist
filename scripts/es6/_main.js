@@ -1,142 +1,17 @@
-// DECLARACION DE OBJETOS.
-class ClienteObject {
-    constructor(nombre, apellido, dni, telefono){
-        this.nombre = nombre,
-        this.apellido = apellido,
-        this.dni = dni
-        this.telefono = telefono
-    }
-}
 
-class ActividadObject{
-    constructor(id, img, nombre, horarios){
-        this.id = id,
-        this.img = img,
-        this.nombre = nombre,
-        this.horarios = horarios
-    }
-}
+// Importamos todos los elementos necesarios.
+import { ClienteObject } from "./models/cliente-object.js";
+import { ActividadObject } from "./models/actividad-object.js"; 
+import { TurnoObject } from "./models/turno-object.js"; 
 
-class TurnoObject{
-    constructor(id, nombreCliente, dniCliente, telefonoCliente, actividadSeleccionada, horarioSeleccionado){
-        this.id = id,
-        this.nombreCliente = nombreCliente,
-        this.dniCliente = dniCliente,
-        this.telefonoCliente = telefonoCliente
-        this.actividadSeleccionada = actividadSeleccionada,
-        this.horarioSeleccionado = horarioSeleccionado
-    }
-}
-
-class HorarioObject {
-    constructor(id, hora){
-        this.id = id,
-        this.hora = hora
-    }
-}
-
-// Inicializamos una constante de que es un array de Actividades de tipo ActividadObject.
-const Actividades = [
-    new ActividadObject(
-        1, 
-        'assets/img/funcional.svg',
-        'funcional', 
-        [
-            new HorarioObject(3, '19:00'),
-            new HorarioObject(4, '20:00'),
-        ],
-    ),
-    new ActividadObject(
-        2, 
-        'assets/img/yoga.svg',
-        'yoga', 
-        [
-            new HorarioObject(1, '17:00'),
-        ],
-    ),
-    new ActividadObject(
-        3, 
-        'assets/img/tela.svg',
-        'tela', 
-        [
-            new HorarioObject(1, '17:00'),
-        ],
-    ),
-    new ActividadObject(
-        4, 
-        'assets/img/crossfit.svg',
-        'crossfit', 
-        [
-            new HorarioObject(1, '17:00'),
-            new HorarioObject(4, '20:00'),
-        ],
-    ),
-    new ActividadObject(
-        5, 
-        'assets/img/aerobox.svg',
-        'aerobox', 
-        [
-            new HorarioObject(2, '18:00'),
-            new HorarioObject(3, '19:00'),
-        ],
-    ),
-    new ActividadObject(
-        6, 
-        'assets/img/zumba.svg',
-        'zumba', 
-        [
-            new HorarioObject(2, '18:00'),
-            new HorarioObject(3, '19:00'),
-            new HorarioObject(4, '20:00'),
-            new HorarioObject(6, '22:00'),
-        ],
-    ),
-    new ActividadObject(
-        7, 
-        'assets/img/taekwondo.svg',
-        'taekwondo', 
-        [
-            new HorarioObject(2, '18:00'),
-            new HorarioObject(3, '19:00'),
-            new HorarioObject(4, '20:00'),
-        ],
-    ),
-    new ActividadObject(
-        8, 
-        'assets/img/karate.svg',
-        'karate', 
-        [
-            new HorarioObject(3, '19:00'),
-            new HorarioObject(4, '20:00'),
-            new HorarioObject(5, '21:00'),
-        ],
-    ),
-    new ActividadObject(
-        9, 
-        'assets/img/mma.svg',
-        'mma', 
-        [
-            new HorarioObject(5, '21:00'),
-            new HorarioObject(6, '22:00'),
-        ],
-    ),
-    new ActividadObject(
-        10, 
-        'assets/img/boxeo.svg',
-        'boxeo', 
-        [
-            new HorarioObject(4, '20:00'),
-            new HorarioObject(5, '21:00'),
-        ],
-    ),
-];
+import { Actividades } from "./constantes/actividades.js";
+import { TurnoGuardadoDb } from "./constantes/turnos-guardados-db.js";
+import { HorarioObject } from "./models/horario-object.js";
 
 AOS.init();
 
 // DECLARACION DE VARIABLES.
 
-// Inicializamos una variable donde almacenaremos los turnos guardados
-const TurnoGuardadoDb = [];
 
 // Inicializamos una constante 'cliente' como Objeto de ClienteObject.
 const _cliente = new ClienteObject;
@@ -150,15 +25,15 @@ let _actividadSeleccionada = new ActividadObject;
 // Almacenamos en una variable el turno seleccionado por el cliente.
 let _horarioSeleccionado = new HorarioObject;
 
-
 // PASO 1: OBTENGO MEDIANTE UNA LLAMADA AJAX, EL PARRAFO DE "SOBRE NOSOTROS" PARA MOSTRAR EN LA VISTA. 
+
 const url = "https://jsonplaceholder.typicode.com/posts"
 //Agregamos un botón con jQuery
 const getAbout = () => {
     $.get(url, function (respuesta, estado) {
         if(estado === "success"){
             let misDatos = respuesta;
-            console.log(misDatos)
+            
 
             let dato = [];
             misDatos.forEach( r => dato.push(r.body));
@@ -349,15 +224,9 @@ function _confirmarReserva(){
 
 // ANIMACIONES
 
-$(".sectionAbout").fadeIn("slow", function(){ 
-        console.log("final de animación");
-    }
-);
+$(".sectionAbout").fadeIn("slow", function(){ });
 
-$(".sectionListado").fadeIn("slow", function(){ 
-    console.log("final de animación");
-}
-);
+$(".sectionListado").fadeIn("slow", function(){ });
 
 
 

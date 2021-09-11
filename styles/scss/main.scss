@@ -381,13 +381,13 @@
     }
 
     &--containerConfirmacion {
-      margin: 15px 0px;
+      margin: 15px auto;
 
       &__h3 {
         border-bottom: 1px solid $colorVerde;
         color: $colorVerde;
         font-size: 1.8rem;
-        margin: 10px 0px;
+        margin: 10px auto !important;
         padding: 15px 0px;
         text-align: center;
         width: 85%;
@@ -474,8 +474,6 @@
       &--containerConfirmacion {
         &__h3 {
           font-size: 1.2rem;
-          margin: 20px auto;
-          text-align: center;
         }
 
         &__p {

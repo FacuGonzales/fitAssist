@@ -274,12 +274,12 @@ a {
       .modal__modalContenido--containerError__p {
         font-family: Armstrong; }
     .modal__modalContenido--containerConfirmacion {
-      margin: 15px 0px; }
+      margin: 15px auto; }
       .modal__modalContenido--containerConfirmacion__h3 {
         border-bottom: 1px solid #008a00;
         color: #008a00;
         font-size: 1.8rem;
-        margin: 10px 0px;
+        margin: 10px auto !important;
         padding: 15px 0px;
         text-align: center;
         width: 85%; }
@@ -322,9 +322,7 @@ a {
     .modal__modalContenido--containerError {
       font-size: 0.8rem; }
     .modal__modalContenido--containerConfirmacion__h3 {
-      font-size: 1.2rem;
-      margin: 20px auto;
-      text-align: center; }
+      font-size: 1.2rem; }
     .modal__modalContenido--containerConfirmacion__p {
       text-align: center;
       font-size: 1.2rem;

@@ -297,10 +297,10 @@ const _continuarReserva = () => {
         $('#error').css('display', 'block');
         $('#error').empty()
 
-        if(!hijos[0].value.match(/[a-zA-Z]/)) return $('#error').append(`<p class="modal__modalContenido--containerError__p">El nombre ingresado es invalido, por favor vuelva a ingresarlo.</p>`);
-        if(!hijos[1].value.match(/[a-zA-Z]/)) return $('#error').append(`<p class="modal__modalContenido--containerError__p">El apellido ingresado es invalido, por favor vuelva a ingresarlo.</p>`);
-        if(isNaN(hijos[2].value)) return $('#error').append(`<p class="modal__modalContenido--containerError__p">El número de dni es invalido, por favor vuelva a ingresarlo.</p>`);
-        if(isNaN(hijos[3].value)) return $('#error').append(`<p class="modal__modalContenido--containerError__p">El telefono es invalido, por favor vuelva a ingresarlo.</p>`);
+        if(!hijos[0].value.match(/[a-zA-Z]/)) return $('#error').append(`<p class="modal__modalContenido--containerError__p">El nombre ingresado es inválido, por favor vuelva a ingresarlo.</p>`);
+        if(!hijos[1].value.match(/[a-zA-Z]/)) return $('#error').append(`<p class="modal__modalContenido--containerError__p">El apellido ingresado es inválido, por favor vuelva a ingresarlo.</p>`);
+        if(isNaN(hijos[2].value)) return $('#error').append(`<p class="modal__modalContenido--containerError__p">El número de dni es inválido, por favor vuelva a ingresarlo.</p>`);
+        if(isNaN(hijos[3].value)) return $('#error').append(`<p class="modal__modalContenido--containerError__p">El telefono es inválido, por favor vuelva a ingresarlo.</p>`);
 
         // PREPARAMOS EL OBJETO DEL CLIENTE
         _cliente.nombre = hijos[0].value;
@@ -336,14 +336,14 @@ function _confirmarReserva(){
     $('#formularioCliente').css('display', 'none');
     $('#error').css('display', 'none');
 
-    $('#confirmacion').append(` <h3 class="modal__modalContenido--containerConfirmacion__h3">¡¡LA RESERVA SE REALIZO CON EXITO!!</h3>
+    $('#confirmacion').append(` <h3 class="modal__modalContenido--containerConfirmacion__h3">¡¡LA RESERVA SE REALIZÓ CON ÉXITO!!</h3>
                                 <p class="modal__modalContenido--containerConfirmacion__p">NOMBRE: ${_turnoGuardar.nombreCliente},</p>
                                 <p class="modal__modalContenido--containerConfirmacion__p">DNI: ${_turnoGuardar.dniCliente},</p>
                                 <p class="modal__modalContenido--containerConfirmacion__p">TELEFONO: ${_turnoGuardar.telefonoCliente},</p>
                                 <p class="modal__modalContenido--containerConfirmacion__p">ACTIVIDAD: ${_turnoGuardar.actividadSeleccionada},</p>
                                 <p class="modal__modalContenido--containerConfirmacion__p">TURNO: ${_turnoGuardar.horarioSeleccionado.hora}</p>
 
-                                <p class="modal__modalContenido--containerConfirmacion__p">Su codigo de confirmacion es: ${_turnoGuardar.id}</p>
+                                <p class="modal__modalContenido--containerConfirmacion__p">Su código de confirmación es: ${_turnoGuardar.id}</p>
                               `)
 }
 

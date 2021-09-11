@@ -6,11 +6,17 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: NFL;
+  font-family: Armstrong;
 }
 
 p {
-  font-family: Deutschlander;
+  font-family: NFL;
+}
+
+a {
+  text-decoration: none;
+  color: $colorBlanco;
+  font-size: 1.5rem;
 }
 
 .section {

@@ -14,15 +14,24 @@
   font-family: "NFL";
   src: url("../../assets/fonts/NFL_Minnesota_Vikings[1].ttf"); }
 
+@font-face {
+  font-family: "Armstrong";
+  src: url("../../assets/fonts/Armstrong.otf"); }
+
 h1,
 h2,
 h3,
 h4,
 h5 {
-  font-family: NFL; }
+  font-family: Armstrong; }
 
 p {
-  font-family: Deutschlander; }
+  font-family: NFL; }
+
+a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.5rem; }
 
 .section {
   background-image: url("../../assets/img/fondoAbout.svg");
@@ -33,11 +42,11 @@ p {
 
 .header {
   height: 100vh;
-  width: 100%;
   background-image: url("../../assets/img/fondoHeader.svg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed; }
+  background-attachment: fixed;
+  width: 100%; }
   .header__img {
     width: 60%;
     display: block;
@@ -48,59 +57,336 @@ p {
     font-size: 1.5rem;
     font-weight: bold; }
 
-.sectionAbout {
-  width: 100%;
-  color: #fff;
-  text-align: center; }
-  .sectionAbout__aboutContainer {
-    padding: 50px; }
-    .sectionAbout__aboutContainer--title {
-      font-size: 5rem;
-      margin-bottom: 30px; }
-    .sectionAbout__aboutContainer--parrafo {
-      font-size: 2rem;
-      letter-spacing: 2px; }
-
-.sectionListado {
-  width: 100%;
-  margin: 0px auto; }
-  .sectionListado__contenedor {
-    border-top: 1px solid #ccc;
-    width: 80%;
-    margin: 0px auto;
-    text-align: center; }
-    .sectionListado__contenedor--title {
-      font-size: 5rem;
-      margin-top: 20px;
-      margin-bottom: 30px; }
-    .sectionListado__contenedor--ul {
-      display: grid;
-      grid-template-columns: 20% 20% 20% 20%;
-      grid-template-rows: 250px 250px; }
-      .sectionListado__contenedor--ul li img {
-        width: 200px;
-        height: 150px; }
-
-.sectionConfirmacion div {
-  text-align: center; }
-  .sectionConfirmacion div h3 {
-    font-size: 4rem;
-    padding-top: 70px;
-    margin-bottom: 40px;
-    border-bottom: 1px solid #ccc; }
-  .sectionConfirmacion div p {
-    font-size: 2rem;
-    padding: 10px 0px;
-    letter-spacing: 3px; }
+@media only screen and (max-width: 1200px) {
+  .header__img {
+    padding-top: 300px;
+    width: 70%; } }
 
 @media only screen and (max-width: 768px) {
   .header__img {
-    padding: 80px 0px; }
+    width: 75%; }
   .header__h5 {
     font-size: 1.2rem; } }
 
-@media only screen and (max-width: 480px) {
-  .header__img {
-    width: 75%; }
+@media only screen and (max-width: 600px) {
   .header__h5 {
     font-size: 1rem; } }
+
+.sectionAbout {
+  padding: 50px 0px;
+  text-align: center;
+  width: 100%; }
+  .sectionAbout__aboutContainer {
+    margin: 0px auto;
+    width: 80%; }
+    .sectionAbout__aboutContainer--title {
+      font-size: 5rem;
+      margin-bottom: 45px; }
+    .sectionAbout__aboutContainer--parrafoContainer {
+      font-size: 2rem !important;
+      letter-spacing: 2px !important;
+      margin: 50px 0px; }
+
+@media only screen and (max-width: 1200px) {
+  .sectionAbout__aboutContainer--title {
+    font-size: 4rem; }
+  .sectionAbout__aboutContainer--parrafoContainer {
+    font-size: 1.8rem !important; } }
+
+@media only screen and (max-width: 768px) {
+  .sectionAbout__aboutContainer--title {
+    font-size: 3rem; }
+  .sectionAbout__aboutContainer--parrafoContainer {
+    font-size: 1.5rem !important; } }
+
+@media only screen and (max-width: 600px) {
+  .sectionAbout__aboutContainer--title {
+    font-size: 2rem; }
+  .sectionAbout__aboutContainer--parrafoContainer {
+    font-size: 1.2rem !important; } }
+
+.sectionListado {
+  padding: 50px 0px;
+  text-align: center;
+  width: 100%; }
+  .sectionListado__contenedor {
+    border-top: 1px solid #ccc;
+    margin: 0px auto;
+    width: 80%; }
+    .sectionListado__contenedor--title {
+      font-size: 5rem;
+      margin-bottom: 40px;
+      margin-top: 70px; }
+    .sectionListado__contenedor--ul {
+      display: grid;
+      grid-template-columns: 25% 25% 25% 25%;
+      grid-template-rows: 300px 300px;
+      justify-content: center;
+      padding: 25px 0px; }
+      .sectionListado__contenedor--ul__li--divContainer__a--img {
+        border-radius: 50%;
+        filter: grayscale(100%);
+        height: 200px;
+        width: 300px; }
+        .sectionListado__contenedor--ul__li--divContainer__a--img:hover {
+          box-shadow: 5px 5px 15px #ad8d00;
+          filter: none;
+          transition: all ease-in 0.2s; }
+      .sectionListado__contenedor--ul__li--divContainer__a--h3 {
+        padding: 25px 0px;
+        text-transform: uppercase; }
+
+@media only screen and (max-width: 1200px) {
+  .sectionListado__contenedor {
+    width: 100%; }
+    .sectionListado__contenedor--title {
+      font-size: 3.5rem; }
+    .sectionListado__contenedor--ul {
+      display: grid;
+      grid-template-columns: 33.3% 33.3% 33.3%;
+      grid-template-rows: 300px 300px 300px; }
+      .sectionListado__contenedor--ul__li--divContainer__a--img {
+        border-radius: 50%;
+        filter: grayscale(100%);
+        height: 145px;
+        width: 245px; } }
+
+@media only screen and (max-width: 768px) {
+  .sectionListado__contenedor--title {
+    font-size: 2.8rem; }
+  .sectionListado__contenedor--ul {
+    display: grid;
+    grid-template-columns: 33.3% 33.3% 33.3%;
+    grid-template-rows: 300px 300px 300px; }
+    .sectionListado__contenedor--ul__li--divContainer__a--img {
+      border-radius: 50%;
+      filter: grayscale(100%);
+      height: 100px;
+      width: 200px; } }
+
+@media only screen and (max-width: 600px) {
+  .sectionListado__contenedor--title {
+    font-size: 2rem; }
+  .sectionListado__contenedor--ul {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 200px 200px 200px 200px 200px; }
+    .sectionListado__contenedor--ul__li--divContainer__a--img {
+      border-radius: 50%;
+      filter: grayscale(100%);
+      height: 100px;
+      width: 150px; }
+    .sectionListado__contenedor--ul__li--divContainer__a--h3 {
+      font-size: 1rem; } }
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.8);
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: all 1s; }
+  .modal:target {
+    opacity: 1;
+    pointer-events: auto; }
+  .modal__modalContenido {
+    background-color: #fdfdfdd4;
+    border-radius: 20px 0px;
+    margin: 10% auto;
+    padding: 20px 30px;
+    position: relative;
+    width: 50%; }
+    .modal__modalContenido--buttonX {
+      color: #000;
+      display: flex;
+      font-family: sans-serif;
+      font-size: 1.2rem;
+      font-weight: bold;
+      justify-content: flex-end;
+      text-decoration: none; }
+    .modal__modalContenido--tituloModal {
+      border-bottom: 1px solid #000;
+      color: #ad0000;
+      font-size: 2.5rem;
+      margin: 15px 0px;
+      padding: 0px 0px 10px 0px;
+      text-align: center; }
+    .modal__modalContenido--horarioContainer__subtitle {
+      font-size: 2rem;
+      letter-spacing: 0.5px;
+      margin: 40px 0px; }
+    .modal__modalContenido--horarioContainer__ulHorarios {
+      display: flex;
+      justify-content: space-evenly;
+      font-size: 2.5rem;
+      margin: 20px 0px; }
+      .modal__modalContenido--horarioContainer__ulHorarios--li {
+        border: 1px solid #ad0000;
+        border-radius: 12px;
+        box-shadow: 3px 3px 0px #ad0000;
+        cursor: pointer;
+        padding: 15px; }
+        .modal__modalContenido--horarioContainer__ulHorarios--li:hover {
+          background-color: #ad0000;
+          color: #fff;
+          transition: all ease-in 0.2s; }
+    .modal__modalContenido--formCliente__subtitle {
+      font-size: 2rem;
+      letter-spacing: 0.5px;
+      margin: 40px 0px; }
+    .modal__modalContenido--formCliente__formularioReserva--input {
+      border: 1px solid #ad0000;
+      border-radius: 5px;
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 10px;
+      outline: none;
+      padding: 10px;
+      transition: all 0.3s;
+      width: 95%; }
+      .modal__modalContenido--formCliente__formularioReserva--input:focus {
+        background-color: #df2a2a42;
+        border-bottom: 2px solid #df2a2a; }
+    .modal__modalContenido--formCliente__formularioReserva--botones {
+      display: flex;
+      justify-content: center; }
+      .modal__modalContenido--formCliente__formularioReserva--botones__button {
+        background: #fff;
+        border: 1px solid #ad0000;
+        border-radius: 22px;
+        color: #000;
+        cursor: pointer;
+        font-family: "NFL";
+        font-size: 1.2rem;
+        margin: 15px 0px;
+        padding: 15px 35px;
+        text-transform: uppercase; }
+    .modal__modalContenido--containerError {
+      color: #ad0000;
+      font-size: 1.5rem;
+      margin: 10px 0px;
+      padding: 10px;
+      text-align: center; }
+      .modal__modalContenido--containerError__p {
+        font-family: Armstrong; }
+    .modal__modalContenido--containerConfirmacion {
+      margin: 15px 0px; }
+      .modal__modalContenido--containerConfirmacion__h3 {
+        border-bottom: 1px solid #008a00;
+        color: #008a00;
+        font-size: 1.8rem;
+        margin: 10px 0px;
+        padding: 15px 0px;
+        text-align: center;
+        width: 85%; }
+      .modal__modalContenido--containerConfirmacion__p {
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+        padding: 5px 0px;
+        text-align: center; }
+
+@media only screen and (max-width: 1200px) {
+  .modal__modalContenido {
+    width: 80%; }
+    .modal__modalContenido--tituloModal {
+      font-size: 2.3rem; }
+    .modal__modalContenido--horarioContainer__subtitle {
+      font-size: 1.8rem; }
+    .modal__modalContenido--horarioContainer__ulHorarios {
+      font-size: 2.2rem; }
+    .modal__modalContenido--containerError {
+      font-size: 1rem; }
+    .modal__modalContenido--containerConfirmacion__h3 {
+      font-size: 1.5rem; }
+    .modal__modalContenido--containerConfirmacion__p {
+      text-align: center;
+      font-size: 1.3rem;
+      letter-spacing: 0.8px;
+      padding: 10px 0px; } }
+
+@media only screen and (max-width: 768px) {
+  .modal__modalContenido {
+    width: 80%; }
+    .modal__modalContenido--tituloModal {
+      font-size: 2rem; }
+    .modal__modalContenido--horarioContainer__subtitle {
+      font-size: 1.5rem; }
+    .modal__modalContenido--horarioContainer__ulHorarios {
+      font-size: 2rem; }
+    .modal__modalContenido--formCliente__subtitle {
+      font-size: 1.8rem; }
+    .modal__modalContenido--containerError {
+      font-size: 0.8rem; }
+    .modal__modalContenido--containerConfirmacion__h3 {
+      font-size: 1.2rem;
+      margin: 20px auto;
+      text-align: center; }
+    .modal__modalContenido--containerConfirmacion__p {
+      text-align: center;
+      font-size: 1.2rem;
+      letter-spacing: 0px;
+      padding: 10px 0px; } }
+
+@media only screen and (max-width: 600px) {
+  .modal__modalContenido {
+    width: 80%; }
+    .modal__modalContenido--tituloModal {
+      font-size: 1.5rem; }
+    .modal__modalContenido--horarioContainer__subtitle {
+      font-size: 1rem; }
+    .modal__modalContenido--horarioContainer__ulHorarios {
+      font-size: 1rem; }
+    .modal__modalContenido--formCliente__subtitle {
+      font-size: 1rem; }
+    .modal__modalContenido--containerError {
+      font-size: 0.7rem; }
+    .modal__modalContenido--containerConfirmacion__h3 {
+      font-size: 0.8rem; }
+    .modal__modalContenido--containerConfirmacion__p {
+      text-align: center;
+      font-size: 1rem;
+      letter-spacing: 0px; } }
+
+.footer {
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: "";
+  padding: 25px;
+  text-align: center; }
+  .footer__text {
+    text-decoration: none;
+    color: #fff;
+    font-family: Armstrong;
+    font-size: 1rem; }
+    .footer__text--strong__nameTitle {
+      font-size: 1rem; }
+    .footer__text--nameSubtitle__linkDev {
+      font-size: 1rem; }
+    .footer__text--nameTitle {
+      text-decoration: none; }
+
+@media only screen and (max-width: 768px) {
+  .footer__text {
+    font-size: 0.8rem; }
+    .footer__text--strong__nameTitle {
+      font-size: 0.8rem; }
+    .footer__text--nameSubtitle__linkDev {
+      font-size: 0.8rem; }
+    .footer__text--nameTitle {
+      text-decoration: none; } }
+
+@media only screen and (max-width: 600px) {
+  .footer__text {
+    font-size: 0.5rem; }
+    .footer__text--strong__nameTitle {
+      font-size: 0.5rem; }
+    .footer__text--nameSubtitle__linkDev {
+      font-size: 0.5rem; }
+    .footer__text--nameTitle {
+      text-decoration: none; } }
